@@ -9,21 +9,32 @@
   
   user_data = <<-EOF
 #!/bin/bash
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum update -y
-sudo yum install docker-ce docker-ce-cli -y
-sudo yum install python3 python3-pip -y
-sudo alternatives --set python /usr/bin/python3
-sudo pip3 install docker-py 
-sudo systemctl start docker
-sudo systemctl enable docker
-echo "license_key: 3e384ca1e73f3e00902f23574f7f847cb486NRAL" | sudo tee -a /etc/newrelic-infra.yml
-sudo curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64/newrelic-infra.repo
-sudo yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
-sudo yum install newrelic-infra -y
-sudo usermod -aG docker ec2-user
-sudo hostnamectl set-hostname Docker
+sudo yum upgrade -y
+sudo yum install unzip -y
+sudo yum install httpd -y
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+sudo yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
+sudo dnf module install php:remi-7.3 -y
+sudo yum install php-mysql -y
+sudo yum install php-gd -y
+sudo yum install php-intl -y
+sudo yum install git -y
+git clone https://aadeye884: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@github.com/aadeye884/JengoMart_Migration.git
+sudo chmod -R 777 /var/www/html/
+cd Planet-Project-Mgt-CRM-Application-Teams
+cp pipm_crm.zip /var/www/html/
+cd /var/www/html/
+sudo yum install unzip -y
+sudo unzip pipm_crm.zip
+cd For_Deployment
+cp -r * /var/www/html/
+cd /var/www/html/
+sudo rm -rf For_Deployment pipm_crm.zip __MACOSX
+cd /var/www/
+sudo chmod -R 777 html/
+sudo setenforce 0
+sudo service httpd start
+sudo chkconfig httpd on
 EOF
   tags = {
     Name = "docker"
