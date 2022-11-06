@@ -8,13 +8,13 @@ resource "aws_instance" "bastion" {
   key_name                    = var.key_name
   associate_public_ip_address = true
   provisioner "file" {
-    source      = "~/keypairs/jengomartkeypair"
+    source      = "~/Keypairs/jengomartkeypair"
     destination = "/home/ec2-user/jengomartkeypair"
   }
   connection {
     type        = "ssh"
     host        = self.public_ip
-    private_key = file("~/keypairs/jengomartkeypair")
+    private_key = file("~/Keypairs/jengomartkeypair")
     user        = "ec2-user"
   }
   user_data = <<-EOF
