@@ -9,7 +9,7 @@ module "staging_keypair" {
 
 module "staging_security_group" {
   source   = "../../modules/security_group"
-  sg_name1 = "bastion_sg"   
+  sg_name1 = "bastion_sg"
   sg_name2 = "rds_sg"
   sg_name3 = "dockerSG"
   sg_name4 = "jenkinsSG"
@@ -58,7 +58,7 @@ module "staging_jenkins" {
 }
 
 module "staging_iam" {
-    source = "../../modules/iam"
+  source = "../../modules/iam"
 }
 
 module "staging_ansible" {
@@ -83,34 +83,34 @@ module "staging_sonarqube" {
 }
 
 module "staging_docker_lb" {
-  source = "../../modules/docker_lb"
-  vpc_name = module.staging_vpc.vpc-id
+  source                 = "../../modules/docker_lb"
+  vpc_name               = module.staging_vpc.vpc-id
   vpc_security_group_ids = [module.staging_security_group.docker_lbSG]
-  subnet_id = [module.staging_vpc.subnet-id1, module.staging_vpc.subnet-id2]
+  subnet_id              = [module.staging_vpc.subnet-id1, module.staging_vpc.subnet-id2]
 }
 
 module "staging_jenkins_lb" {
-  source = "../../modules/jenkins_lb"
-  elb_name = "jenkins-lb"
-  subnet_id = [module.staging_vpc.subnet-id1]
-  elb_sg1 = [module.staging_security_group.jenkins_lbSG]
+  source       = "../../modules/jenkins_lb"
+  elb_name     = "jenkins-lb"
+  subnet_id    = [module.staging_vpc.subnet-id1]
+  elb_sg1      = [module.staging_security_group.jenkins_lbSG]
   elb_tag      = "jenkins-lb"
   elb_instance = module.staging_jenkins.jenkins_ID
 }
 
 module "staging_asg" {
-  source = "../../modules/asg"
-  ami-name = "staging-DockerASG"
+  source              = "../../modules/asg"
+  ami-name            = "staging-DockerASG"
   instance-type       = "t2.medium"
-  launch-configname = "stage-docker-lc"
-  sg_name3 = [module.staging_security_group.dockerSG]
-  key_name = module.staging_keypair.key_name
-  asg-group-name = "staging-docker-asg"
+  launch-configname   = "stage-docker-lc"
+  sg_name3            = [module.staging_security_group.dockerSG]
+  key_name            = module.staging_keypair.key_name
+  asg-group-name      = "staging-docker-asg"
   vpc-zone-identifier = [module.staging_vpc.subnet-id3, module.staging_vpc.subnet-id4]
-  target-group-arn = module.staging_docker_lb.tg_arn
-  asg-policy = "docker-asg-policy"
-  target-instance = module.staging_docker.docker_id
-  depends_on = [time_sleep.wait_600_seconds]
+  target-group-arn    = module.staging_docker_lb.tg_arn
+  asg-policy          = "docker-asg-policy"
+  target-instance     = module.staging_docker.docker_id
+  depends_on          = [time_sleep.wait_600_seconds]
 }
 
 resource "time_sleep" "wait_600_seconds" {
@@ -123,5 +123,5 @@ module "staging_route53" {
   source      = "../../modules/route53"
   domain_name = "www.elizabethfolzgroup.com"
   dns_name    = module.staging_docker_lb.Load_Balancer_dns
-  zone_id     = module.staging_docker_lb.Load_Balancer_zone_id 
+  zone_id     = module.staging_docker_lb.Load_Balancer_zone_id
 }

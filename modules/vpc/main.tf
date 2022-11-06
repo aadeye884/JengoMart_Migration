@@ -20,7 +20,7 @@ resource "aws_subnet" "pubsn1" {
 
 # public subnet2
 resource "aws_subnet" "pubsn2" {
-  vpc_id            = aws_vpc.VPC.id
+  vpc_id            = aws_vpc.vpc.id
   cidr_block        = var.pubsn2_cidr
   availability_zone = var.az2
 
@@ -77,7 +77,7 @@ resource "aws_subnet" "prvsn1" {
 # private subnet2
 resource "aws_subnet" "prvsn2" {
   vpc_id            = aws_vpc.vpc.id
-  cidr_block        = var.orvsn2_cidr
+  cidr_block        = var.prvsn2_cidr
   availability_zone = var.az2
 
   tags = {
