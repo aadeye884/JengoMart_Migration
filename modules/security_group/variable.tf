@@ -14,19 +14,6 @@ variable "sg_name3" {
 variable "sg_name4" {
   default     = ""
 }
-variable "sg_name5" {
-  default = ""
-}
-variable "sg_name6" {
-  default     = ""
-}
-variable "sg_name7" {
-  default     = ""
-}
-variable "sg_name8" {
-  default = ""
-}
-
 variable "all" {
     default = ["0.0.0.0/0"]
     description = "this cidr block is open to the world"
@@ -45,13 +32,6 @@ variable "port_http" {
 variable "port_mysql" {
   default     = 3306
   description = "this port allows msql access"
-}
-variable "port_sonar" {
-  default = "9000"
-}
-variable "port_custom" {
-  default     = 8080
-  description = "this port allows docker access"
 }
 variable "egress" {
   default = "0"
