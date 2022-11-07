@@ -13,3 +13,9 @@ output "subnet-id3" {
 output "subnet-id4" {
   value = aws_subnet.prvsn2.id
 }
+output "subnet-id5" {
+  value = aws_subnet.prvsn3.id
+}
+output "subnet-id6" {
+  value = aws_subnet.prvsn4.id
+}
