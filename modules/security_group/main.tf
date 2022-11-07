@@ -65,14 +65,6 @@ resource "aws_security_group" "dockerSG" {
   }
 
   ingress {
-    description = "Allow custom_http from VPC"
-    from_port   = var.port_custom
-    to_port     = var.port_custom
-    protocol    = "tcp"
-    cidr_blocks = var.all
-  }
-
-  ingress {
     description = "Allow http from VPC"
     from_port   = var.port_http
     to_port     = var.port_http
