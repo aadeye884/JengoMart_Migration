@@ -85,6 +85,28 @@ resource "aws_subnet" "prvsn2" {
   }
 }
 
+# private subnet3
+resource "aws_subnet" "prvsn3" {
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.prvsn3_cidr
+  availability_zone = var.az1
+
+  tags = {
+    Name = var.prvsn3
+  }
+}
+
+# private subnet4
+resource "aws_subnet" "prvsn4" {
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = var.prvsn4_cidr
+  availability_zone = var.az2
+
+  tags = {
+    Name = var.prvsn4
+  }
+}
+
 # elastic ip
 resource "aws_eip" "eip" {
   vpc = true
@@ -122,5 +144,17 @@ resource "aws_route_table_association" "prvrtass1" {
 # private subnet2 route table association 
 resource "aws_route_table_association" "prvrtass2" {
   subnet_id      = aws_subnet.prvsn2.id
+  route_table_id = aws_route_table.prvsnrt.id
+}
+
+# private subnet3 route table association 
+resource "aws_route_table_association" "prvrtass3" {
+  subnet_id      = aws_subnet.prvsn3.id
+  route_table_id = aws_route_table.prvsnrt.id
+}
+
+# private subnet4 route table association 
+resource "aws_route_table_association" "prvrtass4" {
+  subnet_id      = aws_subnet.prvsn4.id
   route_table_id = aws_route_table.prvsnrt.id
 }

@@ -26,12 +26,12 @@ module "staging_bastion" {
   vpc_security_group_ids = [module.staging_security_group.bastionSG]
 }
 
-# module "staging_rds" {
-#   source    = "../../modules/rds"
-#   rds_name  = "rds_subnet_groups"
-#   vpc_sg_id = [module.staging_security_group.rdsSG]
-#   subnet_id = [module.staging_vpc.subnet-id3, module.staging_vpc.subnet-id4]
-# }
+module "staging_rds" {
+  source    = "../../modules/rds"
+  rds_name  = "rds_subnet_groups"
+  vpc_sg_id = [module.staging_security_group.rdsSG]
+  subnet_id = [module.staging_vpc.subnet-id5, module.staging_vpc.subnet-id6]
+}
 
 module "staging_docker" {
   source                 = "../../modules/docker"
