@@ -1,28 +1,28 @@
 # Application Load Balancer 
-resource "aws_lb" "jengomart-alb" {
-  name                       = "jengomart-alb"
+resource "aws_lb" "alb" {
+  name                       = var.alb_name
   security_groups            = var.vpc_security_group_ids
   subnets                    = var.subnet_id
   load_balancer_type         = "application"
 }
 
 # Load Balancer Listener
-resource "aws_lb_listener" "jengomart-alb-listener" {
-  load_balancer_arn = aws_lb.jengomart-alb.arn
+resource "aws_lb_listener" "alb-listener" {
+  load_balancer_arn = aws_lb.alb.arn
   port              = "80"
   protocol          = "HTTP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.jengomart-tg.arn
+    target_group_arn = aws_lb_target_group.tg.arn
   }
 }
 
 # Load Balancer Target Group
-resource "aws_lb_target_group" "jengomart-tg" {
-  name     = "jengomart-tg"
+resource "aws_lb_target_group" "tg" {
+  name     = var.tg_name
   vpc_id   = var.vpc_name
-  port     = 8080
+  port     = var.port
   protocol = "HTTP"
     health_check {
     healthy_threshold   = 3

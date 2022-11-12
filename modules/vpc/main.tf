@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "igw" {
 resource "aws_route_table" "pubsnrt" {
   vpc_id = aws_vpc.vpc.id
   route {
-    cidr_block = var.all
+    cidr_block = var.all_cidr
     gateway_id = aws_internet_gateway.igw.id
     
   }
@@ -118,7 +118,7 @@ resource "aws_nat_gateway" "ngw" {
   subnet_id     = aws_subnet.pubsn1.id
 
   tags = {
-    Name = var.ngw_name
+    Name = var.nat-gw_name
   }
 }
 
@@ -126,7 +126,7 @@ resource "aws_nat_gateway" "ngw" {
 resource "aws_route_table" "prvsnrt" {
   vpc_id = aws_vpc.vpc.id
   route {
-    cidr_block     = var.all
+    cidr_block     = var.all_cidr
     nat_gateway_id = aws_nat_gateway.ngw.id
   }
   

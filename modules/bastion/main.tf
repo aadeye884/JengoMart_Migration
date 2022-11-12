@@ -1,15 +1,19 @@
+# locals {
+#   instance_name = "${terraform.workspace} - instance"
+# }
+
 # Bastion Host
 resource "aws_instance" "bastion" {
   ami                         = var.ami
   instance_type               = var.instance_type
   vpc_security_group_ids      = var.vpc_security_group_ids
   subnet_id                   = var.subnet_id
-  availability_zone           = var.availability_zone
+  availability_zone           = var.az1
   key_name                    = var.key_name
   associate_public_ip_address = true
   provisioner "file" {
     source      = "~/Keypairs/jengomartkeypair"
-    destination = "/home/ec2-user/jengomartkeypair"
+    destination = "/home/ec2-user/Keypairs/jengomartkeypair"
   }
   connection {
     type        = "ssh"
@@ -19,10 +23,10 @@ resource "aws_instance" "bastion" {
   }
   user_data = <<-EOF
   #!/bin/bash
-  sudo chmod 400 jengomartkeypair
+  sudo chmod 400 Keypairs/jengomartkeypair
   sudo hostnamectl set-hostname bastion
   EOF
   tags = {
-    Name = "bastion"
+    Name = var.bastion_name
   }
 }
