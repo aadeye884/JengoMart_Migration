@@ -15,10 +15,9 @@ locals {
   pubsnrt           = "${terraform.workspace}-jengomart-pubsnrt"
   nat-gw_name       = "${terraform.workspace}-jengomart-nat-gw"
   prvsnrt           = "${terraform.workspace}-jengomart-prvsnrt"
-  ami-name          = "${terraform.workspace}-jengomart-DockerASG"
-  name              = "${terraform.workspace}-jengomart-docker_asg" #*
+  ami-name          = "${terraform.workspace}-jengomart-Dockerami"
   asg_lc_name       = "${terraform.workspace}-jengomart-asg_lc"
-  instance_name_asg = "${terraform.workspace}-jengomart-instance_asg"
+  instance_name_asg = "${terraform.workspace}-jengomart-Dockerinstanceasg"
 }
 
 
@@ -85,7 +84,7 @@ module "docker" {
   instance_type_docker   = var.instance_type_docker
   availability_zone      = var.az1
   vpc_security_group_ids = [module.security_group.dockerSG]
-  subnet_id              = [module.vpc.subnet-id3, module.vpc.subnet-id4] #*
+  subnet_id              = ["module.vpc.subnet-id3", "module.vpc.subnet-id4"]
   key_name               = module.keypair.key_name
   docker_name            = local.docker_name
 }
@@ -114,7 +113,7 @@ module "asg" {
   asg-policy          = "docker-asg-policy"
   target-instance     = module.docker.docker_id
   depends_on          = [time_sleep.wait_600_seconds]
-  name                = local.docker_asg
+  instance_name_asg   = local.instance_name_asg
 }
 
 resource "time_sleep" "wait_600_seconds" {
