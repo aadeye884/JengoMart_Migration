@@ -5,15 +5,14 @@ resource "aws_ami_from_instance" "host_ami" {
 }
 # Creating Autoscaling
 resource "aws_launch_configuration" "host_ASG_LC" {
-  name            = var.launch-configname
-  instance_type   = var.instance-type
+  name            = var.asg_lc_name
+  instance_type   = var.instance-type_asg
   image_id        = aws_ami_from_instance.host_ami.id
   security_groups = var.sg_name3
   key_name        = var.key_name
-  
-}
+  }
 resource "aws_autoscaling_group" "ASG" {
-  name                      = var.asg-group-name
+  name                      = var.instance_name_asg
   max_size                  = 4
   min_size                  = 2
   desired_capacity          = 3

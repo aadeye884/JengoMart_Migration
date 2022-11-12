@@ -1,9 +1,13 @@
+locals {
+  instance_name = "${terraform.workspace} - instance"
+}
+
 # DB Subnet Group
 resource "aws_db_subnet_group" "RDS_Subnet_Group" {
   name       = var.rds_name
   subnet_ids = var.subnet_id
   tags = {
-    Name = "RDS_subnet_groups"
+    Name = local.instance_name
   }
 }
 

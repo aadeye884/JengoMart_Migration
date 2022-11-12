@@ -10,3 +10,6 @@ variable "region" {
 variable "table_name" {
   default = "jengomart_tf-state-lock"
 }
+variable "key_name" {
+  default = ""
+}

@@ -1,6 +1,6 @@
 # provider "aws" {
 #     region = "us-east-1"
-#     profile = "newaccess"
+#     profile = "newkey"
 #     shared_credentials_files = "~/.aws/credentials"
 # }
 

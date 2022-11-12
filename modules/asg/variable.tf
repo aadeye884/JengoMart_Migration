@@ -1,4 +1,7 @@
 # AutoScalingGroup Variables
+variable "instance_name_asg" {
+  default = ""
+}
 variable "ami-name" {
   default = ""
 }
@@ -27,5 +30,11 @@ variable "target-group-arn" {
   default = ""
 }
 variable "asg-policy" {
+  default = ""
+}
+variable "asg_lc_name" {
+  default = ""
+}
+variable "instance-type_asg" {
   default = ""
 }
