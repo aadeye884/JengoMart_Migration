@@ -7,9 +7,9 @@ output "docker_IP" {
 output "docker_lb_dns" {
   value = module.docker_lb.Load_Balancer_dns
 }
-# output "route53-name" {
-#   value = module.route53.Route53_name
-# }
-# output "name_servers" {
-#   value = module.route53.name_servers
-# }
+output "route53-name" {
+  value = module.route53.Route53_name
+}
+output "name_servers" {
+  value = module.route53.name_servers
+}
