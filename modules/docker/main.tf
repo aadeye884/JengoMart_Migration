@@ -3,7 +3,7 @@
   ami                         = var.ami
   instance_type               = var.instance_type_docker
   vpc_security_group_ids      = var.vpc_security_group_ids
-  subnet_id                   = "var.subnet_id"
+  subnet_id                   = var.subnet_id
   availability_zone           = var.availability_zone
   key_name                    = var.key_name
   

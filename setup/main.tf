@@ -84,7 +84,7 @@ module "docker" {
   instance_type_docker   = var.instance_type_docker
   availability_zone      = var.az1
   vpc_security_group_ids = [module.security_group.dockerSG]
-  subnet_id              = ["module.vpc.subnet-id3", "module.vpc.subnet-id4"]
+  subnet_id              = module.vpc.subnet-id3
   key_name               = module.keypair.key_name
   docker_name            = local.docker_name
 }
