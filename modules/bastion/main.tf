@@ -23,7 +23,7 @@ resource "aws_instance" "bastion" {
   }
   user_data = <<-EOF
   #!/bin/bash
-  sudo chmod 400 Keypairs/jengomartkeypair
+  sudo chmod 400 jengomartkeypair
   sudo hostnamectl set-hostname bastion
   EOF
   tags = {
