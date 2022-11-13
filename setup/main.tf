@@ -80,7 +80,7 @@ module "rds" {
 
 module "docker" {
   source                 = "../modules/docker"
-  ami                    = "ami-06640050dc3f556bb"
+  ami                    = var.ami
   instance_type_docker   = var.instance_type_docker
   availability_zone      = var.az1
   vpc_security_group_ids = [module.security_group.dockerSG]

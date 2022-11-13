@@ -13,7 +13,7 @@ resource "aws_instance" "bastion" {
   associate_public_ip_address = true
   provisioner "file" {
     source      = "~/Keypairs/jengomartkeypair"
-    destination = "/home/ec2-user/Keypairs/jengomartkeypair"
+    destination = "/home/ec2-user/jengomartkeypair"
   }
   connection {
     type        = "ssh"
