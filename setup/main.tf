@@ -71,12 +71,12 @@ module "bastion" {
   bastion_name           = local.bastion_name
 }
 
-module "rds" {
-  source    = "../modules/rds"
-  rds_name  = local.rds_name
-  vpc_sg_id = [module.security_group.rdsSG]
-  subnet_id = [module.vpc.subnet-id5, module.vpc.subnet-id6]
-}
+# module "rds" {
+#   source    = "../modules/rds"
+#   rds_name  = local.rds_name
+#   vpc_sg_id = [module.security_group.rdsSG]
+#   subnet_id = [module.vpc.subnet-id5, module.vpc.subnet-id6]
+# }
 
 module "docker" {
   source                 = "../modules/docker"
@@ -99,32 +99,32 @@ module "docker_lb" {
   alb_name               = local.alb_name
 }
 
-module "asg" {
-  source              = "../modules/asg"
-  ami-name            = local.ami-name
-  asg_lc_name         = local.asg_lc_name
-  instance-type_asg   = var.instance-type_asg
-  launch-configname   = "stage-docker-lc"
-  sg_name3            = [module.security_group.dockerSG]
-  key_name            = module.keypair.key_name
-  asg-group-name      = "docker-asg"
-  vpc-zone-identifier = [module.vpc.subnet-id3, module.vpc.subnet-id4]
-  target-group-arn    = module.docker_lb.tg_arn
-  asg-policy          = "docker-asg-policy"
-  target-instance     = module.docker.docker_id
-  depends_on          = [time_sleep.wait_600_seconds]
-  instance_name_asg   = local.instance_name_asg
-}
+# module "asg" {
+#   source              = "../modules/asg"
+#   ami-name            = local.ami-name
+#   asg_lc_name         = local.asg_lc_name
+#   instance-type_asg   = var.instance-type_asg
+#   launch-configname   = "stage-docker-lc"
+#   sg_name3            = [module.security_group.dockerSG]
+#   key_name            = module.keypair.key_name
+#   asg-group-name      = "docker-asg"
+#   vpc-zone-identifier = [module.vpc.subnet-id3, module.vpc.subnet-id4]
+#   target-group-arn    = module.docker_lb.tg_arn
+#   asg-policy          = "docker-asg-policy"
+#   target-instance     = module.docker.docker_id
+#   depends_on          = [time_sleep.wait_600_seconds]
+#   instance_name_asg   = local.instance_name_asg
+# }
 
-resource "time_sleep" "wait_600_seconds" {
-  depends_on = [module.docker]
+# resource "time_sleep" "wait_600_seconds" {
+#   depends_on = [module.docker]
 
-  create_duration = "600s"
-}
+#   create_duration = "600s"
+# }
 
-module "route53" {
-  source      = "../modules/route53"
-  domain_name = "www.elizabethfolzgroup.com"
-  dns_name    = module.docker_lb.Load_Balancer_dns
-  zone_id     = module.docker_lb.Load_Balancer_zone_id
-}
+# module "route53" {
+#   source      = "../modules/route53"
+#   domain_name = "www.elizabethfolzgroup.com"
+#   dns_name    = module.docker_lb.Load_Balancer_dns
+#   zone_id     = module.docker_lb.Load_Balancer_zone_id
+# }
