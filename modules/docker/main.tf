@@ -19,7 +19,7 @@ sudo yum install php-mysql -y
 sudo yum install php-gd -y
 sudo yum install php-intl -y
 sudo yum install git -y
-git clone https://aadeye884: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@github.com/aadeye884/JengoMart_Migration.git
+git clone https://aadeye884:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@github.com/aadeye884/JengoMart_Migration.git
 sudo chmod -R 777 /var/www/html/
 cd Planet-Project-Mgt-CRM-Application-Teams
 cp pipm_crm.zip /var/www/html/
