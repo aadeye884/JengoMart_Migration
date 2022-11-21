@@ -1,5 +1,5 @@
 variable "bucket_name" {
-  default = "jengomart"
+  default = "newproject"
 }
 variable "acl" {
   default = "private"
@@ -8,7 +8,7 @@ variable "region" {
   default = "us-east-1"
 }
 variable "table_name" {
-  default = "jengomart_tf-state-lock"
+  default = "newproject_tf-state-lock"
 }
 variable "key_name" {
   default = ""
