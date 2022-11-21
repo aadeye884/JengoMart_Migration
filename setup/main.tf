@@ -1,23 +1,23 @@
 locals {
-  vpc_name          = "${terraform.workspace}-jengomart-vpc"
-  bastion_name      = "${terraform.workspace}-jengomart-bastion"
-  rds_name          = "${terraform.workspace}-jengomart-rds"
-  docker_name       = "${terraform.workspace}-jengomart-docker"
-  alb_name          = "${terraform.workspace}-jengomart-alb"
-  tg_name           = "${terraform.workspace}-jengomart-tg"
-  pubsn1            = "${terraform.workspace}-jengomart-pubsn1"
-  pubsn2            = "${terraform.workspace}-jengomart-pubsn2"
-  prvsn1            = "${terraform.workspace}-jengomart-prvsn1"
-  prvsn2            = "${terraform.workspace}-jengomart-prvsn2"
-  prvsn3            = "${terraform.workspace}-jengomart-prvsn3"
-  prvsn4            = "${terraform.workspace}-jengomart-prvsn4"
-  igw_name          = "${terraform.workspace}-jengomart-igw"
-  pubsnrt           = "${terraform.workspace}-jengomart-pubsnrt"
-  nat-gw_name       = "${terraform.workspace}-jengomart-nat-gw"
-  prvsnrt           = "${terraform.workspace}-jengomart-prvsnrt"
-  ami-name          = "${terraform.workspace}-jengomart-Dockerami"
-  asg_lc_name       = "${terraform.workspace}-jengomart-asg_lc"
-  instance_name_asg = "${terraform.workspace}-jengomart-Dockerinstanceasg"
+  vpc_name          = "${terraform.workspace}-newproject-vpc"
+  bastion_name      = "${terraform.workspace}-newproject-bastion"
+  rds_name          = "${terraform.workspace}-newproject-rds"
+  docker_name       = "${terraform.workspace}-newproject-docker"
+  alb_name          = "${terraform.workspace}-newproject-alb"
+  tg_name           = "${terraform.workspace}-newproject-tg"
+  pubsn1            = "${terraform.workspace}-newproject-pubsn1"
+  pubsn2            = "${terraform.workspace}-newproject-pubsn2"
+  prvsn1            = "${terraform.workspace}-newproject-prvsn1"
+  prvsn2            = "${terraform.workspace}-newproject-prvsn2"
+  prvsn3            = "${terraform.workspace}-newproject-prvsn3"
+  prvsn4            = "${terraform.workspace}-newproject-prvsn4"
+  igw_name          = "${terraform.workspace}-newproject-igw"
+  pubsnrt           = "${terraform.workspace}-newproject-pubsnrt"
+  nat-gw_name       = "${terraform.workspace}-newproject-nat-gw"
+  prvsnrt           = "${terraform.workspace}-newproject-prvsnrt"
+  ami-name          = "${terraform.workspace}-newproject-Dockerami"
+  asg_lc_name       = "${terraform.workspace}-newproject-asg_lc"
+  instance_name_asg = "${terraform.workspace}-newproject-Dockerinstanceasg"
 }
 
 module "vpc" {
@@ -47,7 +47,7 @@ module "vpc" {
 
 module "keypair" {
   source   = "../modules/keypair"
-  key_name = "Keypairs/jengomartkeypair"
+  key_name = "Keypairs/newkeypair"
 }
 
 module "security_group" {

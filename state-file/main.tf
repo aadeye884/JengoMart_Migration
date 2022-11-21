@@ -1,5 +1,5 @@
 # s3 Bucket for Backend
-resource "aws_s3_bucket" "jengomart" {
+resource "aws_s3_bucket" "newproject" {
   bucket        = var.bucket_name
   force_destroy = true
   tags = {
@@ -14,7 +14,7 @@ resource "aws_s3_bucket_acl" "backend_bucket_acl" {
 ################
 # DYNAMODB TABLE
 ################
-resource "aws_dynamodb_table" "jengomart_tf-state-lock" {
+resource "aws_dynamodb_table" "newproject_tf-state-lock" {
   name     = var.table_name
   hash_key = "LockID"
   attribute {
@@ -24,7 +24,7 @@ resource "aws_dynamodb_table" "jengomart_tf-state-lock" {
   write_capacity = 1
   read_capacity  = 1
   tags = {
-    Name        = "jengomart_tf-state-lock"
+    Name        = "newproject_tf-state-lock"
     Environment = "Terraform"
   }
 }

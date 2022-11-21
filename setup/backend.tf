@@ -6,10 +6,10 @@
 
 # terraform {
 #   backend "s3" {
-#     bucket         = "jengomart"
+#     bucket         = "newproject"
 #     key            = "dev/terraform.tfstate"
 #     region         = "us-east-1"
 #     profile        =  "newaccess"
-#     dynamodb_table = "jengomart_tf-state-lock"
+#     dynamodb_table = "newproject_tf-state-lock"
 #   }
 # }
