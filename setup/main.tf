@@ -123,7 +123,7 @@ resource "time_sleep" "wait_600_seconds" {
 
 module "route53" {
   source      = "../modules/route53"
-  domain_name = "www.elizabethfolzgroup.com"
+  domain_name = "www.elizabethfolzgroupllc.com"
   dns_name    = module.docker_lb.Load_Balancer_dns
   zone_id     = module.docker_lb.Load_Balancer_zone_id
 }
